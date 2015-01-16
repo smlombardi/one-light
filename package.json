@@ -1,9 +1,9 @@
 {
-  "name": "one-light-ui",
+  "name": "one-light-ui-practice",
   "theme": "ui",
   "version": "0.0.0",
-  "description": "Atom One light UI theme",
-  "repository": "https://github.com/atom/one-light-ui.git",
+  "description": "Atom One Light practice UI theme",
+  "repository": "https://github.com/smlombardi/one-light.git",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"

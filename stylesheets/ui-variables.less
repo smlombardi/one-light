@@ -1,0 +1,173 @@
+
+// UI Variables for Atom Theme: One Light
+
+// Settings -----------------------------------
+
+@theme-color:             hsl(220, 100%, 50%);
+@theme-adjust-saturation: 0%; // -/+n%
+@theme-adjust-contrast:   0%;
+
+// TODO: Move into package.json
+@theme-base-color-1: hsl(220, 100%, 65%);
+@theme-base-color-2: hsl(260,  90%, 75%);
+@theme-base-color-3: hsl(320,  60%, 65%);
+@theme-base-color-4: hsl( 20,  75%, 60%);
+@theme-base-color-5: hsl(150,  60%, 50%);
+
+@theme-saturation-1: hsl(220, 100%, 65%); //   40%
+@theme-saturation-2: hsl(220,  75%, 65%); //   20%
+@theme-saturation-3: hsl(220,  50%, 65%); //    0%
+@theme-saturation-4: hsl(220,  25%, 65%); //  -10%
+@theme-saturation-5: hsl(220,   0%, 65%); // -100%
+
+@theme-contrast-1: hsla(0, 0%, 0%,  1); //  40%
+@theme-contrast-2: hsla(0, 0%, 0%, .8); //  20%
+@theme-contrast-3: hsla(0, 0%, 0%, .6); //   0%
+@theme-contrast-4: hsla(0, 0%, 0%, .4); // -10%
+@theme-contrast-5: hsla(0, 0%, 0%, .2); // -20%
+
+
+// Config -----------------------------------
+
+@ui-hue:        hsvhue(@theme-color);
+@ui-saturation: max(0%, @theme-adjust-saturation + 2%); // limit to > 100%, default 20%
+@ui-brightness: 98%;
+@ui-contrast:   @theme-adjust-contrast * -0.1;
+
+
+// Base colors -----------------------------------
+
+@base-accent-color:     hsl(@ui-hue, @theme-adjust-saturation + 90%, (@ui-brightness + (@ui-contrast*10) - 40%) );
+@base-background-color: hsl(@ui-hue, @ui-saturation, @ui-brightness + (@ui-contrast*-2) );
+@base-border-color:     hsl(@ui-hue, @ui-saturation*1.2, 80% + (@ui-contrast*2) );
+
+
+// Level Colors -----------------------------------
+
+@level-1-color: lighten(@base-background-color, (@ui-contrast * 1.5) + 4% );
+@level-2-color: darken( @base-background-color, (@ui-contrast * 0.7)      );
+@level-3-color: darken( @base-background-color, (@ui-contrast * 1.5) + 8% );
+
+
+// Var + State Background Colors
+
+@background-color-info:    hsl(208, 100%, 56%);
+@background-color-success: hsl(132,  48%, 48%);
+@background-color-warning: hsl( 40,  60%, 52%);
+@background-color-error:   hsl(  0,  60%, 56%);
+
+@background-color-highlight: hsla(@ui-hue, 10% + @ui-saturation, 50%,.12);
+@background-color-selected:  hsla(@ui-hue, 10% + @ui-saturation, 50%,.18);
+
+
+// Component Colors
+
+@app-background-color:             darken(@level-3-color, 2%);
+
+@tree-view-background-color:       @level-3-color;
+@tree-view-border-color:           @base-border-color;
+
+@tab-background-color:             @level-3-color;
+@tab-background-color-active:      @level-2-color;
+@tab-bar-background-color:         @level-3-color;
+@tab-bar-border-color:             @base-border-color;
+@tab-border-color:                 @base-border-color;
+@tab-text-color:                   @text-color-highlight;
+@tab-icon-color:                   @text-color-subtle;
+@tab-inactive-transparency:        .7;
+
+@pane-item-background-color:       @base-background-color;
+@pane-item-border-color:           @base-border-color;
+
+@panel-heading-background-color:   @level-2-color;
+@panel-heading-border-color:       @base-border-color;
+
+@tool-panel-background-color:      @level-3-color;
+@tool-panel-border-color:          @base-border-color;
+
+@inset-panel-background-color:     lighten(@level-2-color, 4%);
+@inset-panel-border-color:         fadeout(@base-border-color, 15%);
+
+@overlay-background-color:         @level-2-color;
+@overlay-border-color:             @base-border-color;
+@overlay-backdrop-color:           hsla(@ui-hue,@ui-saturation,5%,.5);
+
+@button-background-color:          @level-1-color;
+@button-background-color-hover:    darken(@button-background-color, 4%);
+@button-background-color-selected: lighten(@base-accent-color, 4%);
+@button-text-color-selected:       contrast(@button-background-color-selected, hsl(@ui-hue,100%,100%), hsl(@ui-hue,100%,12%), 40% );
+@button-border-color:              @base-border-color;
+@button-border-color-selected:     @base-accent-color;
+
+@input-border-color:               @base-border-color;
+@input-background-color:           @level-1-color;
+@input-background-color-focus:     mix(@base-accent-color, @input-background-color, 6%);
+@input-selection-color:            @background-color-selected;
+@input-selection-color-focus:      fadein(@background-color-selected, 6%);
+
+@tooltip-background-color:         @base-accent-color;
+@tooltip-text-color:               contrast(@tooltip-background-color, hsl(@ui-hue,100%,100%), hsl(@ui-hue,100%,12%), 40% );
+@tooltip-text-key-color:           @tooltip-background-color;
+@tooltip-background-key-color:     @tooltip-text-color;
+
+@progress-background-color:        @base-accent-color;
+
+@checkbox-background-color:        fade(@base-accent-color, 33%);
+
+@scrollbar-color:                  @level-1-color;
+@scrollbar-background-color:       transparent;
+
+
+// Utilities
+
+@key-binding-border-color:     @base-border-color;
+@key-binding-background-color: @level-2-color;
+
+
+// Text Colors
+
+@text-color: hsl(@ui-hue, @ui-saturation, -70% + @ui-brightness + (@ui-contrast * 10) );
+@text-color-subtle: fadeout(@text-color, 30%);
+@text-color-faded: fade(@text-color, 30%);
+@text-color-highlight: hsl(@ui-hue, @ui-saturation + 20%, @ui-contrast + 30%);
+@text-color-selected: darken(@text-color-highlight, 10%);
+
+@text-color-info:    hsl(208, 100%, 54%);
+@text-color-success: hsl(132,  60%, 44%);
+@text-color-warning: hsl( 37,  90%, 44%);
+@text-color-error:   hsl(  0,  90%, 56%);
+
+@text-color-ignored:  @text-color-subtle;
+@text-color-added:    @text-color-success;
+@text-color-renamed:  @text-color-info;
+@text-color-modified: @text-color-warning;
+@text-color-removed:  @text-color-error;
+
+
+// Sizes
+
+@font-size:       11px;
+@input-font-size: 14px;
+
+@disclosure-arrow-size: 12px;
+
+@component-padding:      10px;
+@component-icon-padding:  5px;
+@component-icon-size:    16px;
+@component-line-height:  25px;
+@component-border-radius: 3px;
+
+@tab-height: 30px;
+
+
+// Font
+
+@font-family: 'Lucida Grande', 'Segoe UI', sans-serif;
+
+
+// Settings View
+
+@settings-list-background-color: darken(@level-2-color, 3%);
+@theme-config-box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, .2), 0 1px 0 hsla(0, 0%, 100%, .3);
+@theme-config-box-shadow-selected: inset 0 1px 3px hsla(0, 0%, 0%, .2);
+@theme-config-border-selected: hsla(0, 0%, 0%, .5);
